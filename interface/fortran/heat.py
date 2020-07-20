@@ -2,11 +2,12 @@ import numpy as np
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
+from fort_evolve import evolve
 
 # Set the colormap
 plt.rcParams['image.cmap'] = 'BrBG'
 
-def evolve(u, u_previous, a, dt, dx2, dy2):
+'''def evolve(u, u_previous, a, dt, dx2, dy2):
     """Explicit time evolution.
        u:            new temperature field
        u_previous:   previous field
@@ -23,7 +24,7 @@ def evolve(u, u_previous, a, dt, dx2, dy2):
              (u_previous[i, j+1] - 2*u_previous[i, j] + \
                  u_previous[i, j-1]) / dy2 )
     u_previous[:] = u[:]
-
+'''
 def iterate(field, field0, a, dx, dy, timesteps, image_interval):
     """Run fixed number of time steps of heat equation"""
 

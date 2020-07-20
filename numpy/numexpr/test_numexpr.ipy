@@ -1,0 +1,10 @@
+# coding: utf-8
+import numpy as np
+import numexpr
+numexpr.set_num_threads(8)
+
+a = np.random.random((3000, 3000))
+b = np.random.random((3000, 3000))
+get_ipython().run_line_magic('timeit', 'c = 2.0 * a - 4.5 * b + np.sin(a) - np.cos(b)')
+get_ipython().run_line_magic('timeit', 'c = 2.0 * a - 4.5 * b')
+get_ipython().run_line_magic('timeit', 'numexpr.evaluate("2.0 * a - 4.5 * b")')

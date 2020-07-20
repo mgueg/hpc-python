@@ -1,0 +1,21 @@
+# coding: utf-8
+import numpy as np
+import scipy.integrate
+
+dx = 0.10
+xi = np.arange(0, np.pi/2, dx)
+xprime = (xi[1:] + xi[:-1])/2.
+print("Sum dx=0.1 : ",np.sum(np.sin(xprime*dx)))
+
+dx=0.01
+
+%%timeit 
+print ("Sum simps dx=0.01 : ",scipy.integrate.simps(np.sin(xi),dx=dx))
+
+%%timeit 
+print("Sum trapz dx=0.01 : ",np.trapz(np.sin(xi),dx=dx))
+
+%%timeit
+xi = np.arange(0, np.pi/2, dx)
+xprime = (xi[1:] + xi[:-1]) / 2.
+print("Sum  dx=0.01 : ",np.sum(np.sin(xprime)*dx))

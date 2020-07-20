@@ -2,7 +2,9 @@ from __future__ import print_function
 import time
 import argparse
 
-from heat import init_fields, write_field, iterate
+from npheat import iterate, init_fields, write_field
+#from heat import  iterate as cyiterate
+#from pyheat import init_fields, write_field, iterate
 
 
 def main(input_file='bottle.dat', a=0.5, dx=0.1, dy=0.1, 

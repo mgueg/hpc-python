@@ -3,6 +3,7 @@ subroutine evolve(u, u_previous, nx, ny, a, dt, dx2, dy2)
    implicit none
 
    real*8, intent(inout) :: u(nx,ny), u_previous(nx, ny)
+   !f2py intent(in, out) :: u, u_previous
    integer :: nx, ny
    real*8 :: a, dt, dx2, dy2
 

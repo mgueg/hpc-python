@@ -5,3 +5,5 @@
    as **Asym** = **A** + **A**^T*
 2. Calculate the matrix product **C** = **A** * **B** using `numpy.dot()`.
 3. Calculate the eigenvalues of matrix **C** with `numpy.linalg.eigvals()`.
+
+see https://stackoverflow.com/a/53099870/3324095

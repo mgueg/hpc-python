@@ -19,3 +19,14 @@ floating point arguments?
 Finally, try to declare arguments as floating point numbers (while keeping
 `result` as integer), what happens?
 
+### MG Notes
+
+How to annotate and view cython code (with additional lines added by cython 
+
+```shellscript
+
+cameleon:cython mik$ cython -a mandel_cyt.pyx
+cameleon:cython mik$ ls -lhrt mandel_cyt.html
+-rw-r--r-- 1 mik admin  58K 17 mai 23:06 mandel_cyt.html
+
+```

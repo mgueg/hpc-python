@@ -6,30 +6,21 @@ import matplotlib.pyplot as plt
 # Set the colormap
 plt.rcParams['image.cmap'] = 'BrBG'
 
-from _evolve import ffi, lib
-
 def evolve(u, u_previous, a, dt, dx2, dy2):
     """Explicit time evolution.
        u:            new temperature field
        u_previous:   previous field
        a:            diffusion constant
-       dt:           time step. 
+       dt:           time step. """
 
-    n, m = u.shape
-
-    for i in range(1, n-1):
-        for j in range(1, m-1):
-            u[i, j] = u_previous[i, j] + a * dt * ( \
-             (u_previous[i+1, j] - 2*u_previous[i, j] + \
-              u_previous[i-1, j]) / dx2 + \
-             (u_previous[i, j+1] - 2*u_previous[i, j] + \
-                 u_previous[i, j-1]) / dy2 )
+    dx2inv = 1. / dx2
+    dy2inv = 1. / dy2
+    u[1:-1, 1:-1] = u_previous[1:-1, 1:-1] + a * dt * ( \
+             (u_previous[2:, 1:-1] - 2*u_previous[1:-1, 1:-1] + \
+              u_previous[:-2, 1:-1]) * dx2inv + \
+             (u_previous[1:-1, 2:] - 2*u_previous[1:-1, 1:-1] + \
+                 u_previous[1:-1, :-2]) * dy2inv )
     u_previous[:] = u[:]
-    """
-    u_ptr = ffi.cast("double *", ffi.from_buffer(u))
-    u_previous_ptr = ffi.cast("double *", ffi.from_buffer(u_previous))
-    nx, ny = u.shape
-    lib.evolve(u_ptr, u_previous_ptr, nx, ny, a, dt, dx2, dy2)
 
 def iterate(field, field0, a, dx, dy, timesteps, image_interval):
     """Run fixed number of time steps of heat equation"""
